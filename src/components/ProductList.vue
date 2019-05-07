@@ -34,6 +34,6 @@
     height: 130px;
   }
   p {
-    min-height: 66px
+    min-height: 120px;
   }
 </style>
