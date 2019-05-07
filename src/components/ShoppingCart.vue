@@ -1,6 +1,6 @@
 <template>
   <div>
-<cart-icon /> {{cart.length}}
+    <cart-icon /> {{cart.total}}
   </div>
 </template>
 
