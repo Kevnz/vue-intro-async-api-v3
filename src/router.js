@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import CheckOut from './views/CheckOut.vue'
-import ViewBasket from './views/ViewBasket.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -16,11 +15,6 @@ export default new Router({
       path: '/checkout',
       name: 'checkout',
       component: CheckOut
-    },
-    {
-      path: '/cart',
-      name: 'viewbasket',
-      component: ViewBasket
     },
     {
       path: '/about',
