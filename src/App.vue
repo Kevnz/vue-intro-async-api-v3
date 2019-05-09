@@ -1,11 +1,5 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/checkout">Checkout</router-link> |
-      <router-link to="/cart">Cart</router-link> |
-      <router-link to="/">About</router-link>
-    </div>
+  <div id="app" class="container">
     <router-view/>
   </div>
 </template>
@@ -19,12 +13,25 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 body {
   border-top: 0.6rem solid #42b983;
   padding: 0;
   margin: 0;
+}
+.container {
+  border-top: 0.2rem solid #2c3e50;
+}
+h1 {
+  font-size: 3rem;
+  margin-top: 0;
+  font-family: "Avenir Next", system-ui, sans-serif;
+  font-weight: normal;
+}
+.logo {
+  max-width: 100px;
+  margin-right: 20px;
+  vertical-align: middle;
 }
 
 .cards {
