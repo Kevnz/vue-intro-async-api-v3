@@ -11,6 +11,46 @@
         <router-link to="/about">About</router-link>
       </div>
       <CartList v-bind:cart="cart" v-on:remove-from-cart="removeFromCart"></CartList>
+
+      <button id="show-modal" @click="showModal = true">Pay the man!!!</button>
+      <!-- use the modal component, pass in the prop -->
+      <modal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">Vue Shop</h3>
+        <div slot="body">
+          <form class="checkout">
+            <div class="checkout-header">
+              <h4 class="checkout-title">
+                Checkout
+                <span class="checkout-price">${{cart.cost}}</span>
+              </h4>
+            </div>
+            <p>
+              <input
+                type="text"
+                class="checkout-input checkout-name"
+                placeholder="Your name"
+                autofocus
+                required
+              >
+              <input type="text" class="checkout-input checkout-exp" placeholder="MM" required>
+              <input type="text" class="checkout-input checkout-exp" placeholder="YY" required>
+            </p>
+            <p>
+              <input
+                type="text"
+                class="checkout-input checkout-card"
+                placeholder="4111 1111 1111 1111"
+                required
+              >
+              <input type="text" class="checkout-input checkout-cvc" placeholder="CVC" required>
+            </p>
+            <p>
+              <input type="submit" value="Purchase" class="checkout-btn" @click="checkOut">
+            </p>
+          </form>
+        </div>
+        <div slot="footer"></div>
+      </modal>
     </div>
   </div>
 </template>
@@ -20,22 +60,46 @@
 import Welcome from "@/components/Welcome.vue";
 import CartList from "@/components/CartList.vue";
 import ShoppingCart from "@/components/ShoppingCart.vue";
+import Modal from "@/components/Modal.vue";
+import { delay } from "@kev_nz/async-tools";
 
 export default {
   name: "checkout",
   components: {
     CartList,
     Welcome,
-    ShoppingCart
+    ShoppingCart,
+    Modal
   },
   data() {
     console.log("win cart", window.cart);
     return {
+      showModal: false,
       products: window.cart || [],
       cart: window.cart || []
     };
   },
   methods: {
+    async checkOut() {
+      console.info(this.cart);
+
+      const result = await fetch("https://kev-pi.herokuapp.com/api/long/wait", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        redirect: "follow",
+        referrer: "no-referrer",
+        body: JSON.stringify(this.cart)
+      });
+
+      console.log(result);
+      return;
+      this.showModal = false;
+    },
     removeFromCart(product) {
       const items = this.cart.items.filter(i => i.id !== product.id);
       const item = this.cart.items.filter(i => product.id === i.id);
@@ -60,3 +124,19 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.checkout {
+  text-align: left;
+}
+.checkout-name,
+.checkout-card {
+  width: 180px;
+  margin-right: 10px;
+}
+.checkout-exp,
+.checkout-cvc {
+  width: 35px;
+  margin-right: 5px;
+}
+</style>

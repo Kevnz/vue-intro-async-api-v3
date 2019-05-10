@@ -15,10 +15,16 @@
 
 <script>
 import CartIcon from "./CartIcon.vue";
+import Modal from "./Modal.vue";
+
 export default {
   props: ["products", "cart"],
   components: {
-    CartIcon
+    CartIcon,
+    Modal
+  },
+  data: {
+    showModal: false
   },
   methods: {
     removeFromCart: function(product, e) {
