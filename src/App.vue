@@ -12,7 +12,7 @@
   text-align: center;
   color: #2c3e50;
 }
-nav a {
+#nav a {
   text-decoration: none;
   margin-left: 10px;
   margin-right: 10px;
