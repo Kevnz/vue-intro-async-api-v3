@@ -8,7 +8,6 @@
       <div id="nav">
         <router-link to="/">Home</router-link>|
         <router-link to="/checkout">Checkout</router-link>|
-        <router-link to="/cart">Cart</router-link>|
         <router-link to="/about">About</router-link>
       </div>
       <ProductList v-bind:products="products" v-on:add-to-cart="addToCart"></ProductList>
