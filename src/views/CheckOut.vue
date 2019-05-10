@@ -6,8 +6,8 @@
         <img class="logo" alt="Vue logo" src="../assets/logo.png">The Vue.js Shop
       </h1>
       <div id="nav">
-        <router-link to="/">Home</router-link>|
-        <router-link to="/checkout">Checkout</router-link>|
+        <router-link to="/">Home</router-link>
+        <router-link to="/checkout">Checkout</router-link>
         <router-link to="/about">About</router-link>
       </div>
       <CartList v-bind:cart="cart" v-on:remove-from-cart="removeFromCart"></CartList>
