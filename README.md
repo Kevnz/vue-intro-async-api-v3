@@ -1,29 +1,12 @@
-# second
+# Code for Intro to Vue talk
 
-## Project setup
-```
-npm install
-```
+This version takes the store and instead of static data gets the data by calling an API and adding a modal component.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Examples
 
-### Compiles and minifies for production
-```
-npm run build
-```
+* API Call - `./src/views/Home.vue`  - lines 32-34 and lines 49-59
+* Modal - `./src/components/Modal.vue`
+* Using Modal -`./src/views/CheckOut.vue` Line 17 setting the visability.
+* Using Modal -`./src/views/CheckOut.vue` Line 18, 19, 58 `slot` for setting content.
+* Making async request -`./src/views/CheckOut.vue` Lines 90-114 submitting data to API.
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

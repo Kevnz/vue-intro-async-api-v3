@@ -18,7 +18,6 @@
 
 <script>
 // @ is an alias to /src
-import Welcome from "@/components/Welcome.vue";
 import ProductList from "@/components/ProductList.vue";
 import ShoppingCart from "@/components/ShoppingCart.vue";
 
@@ -26,7 +25,6 @@ export default {
   name: "home",
   components: {
     ProductList,
-    Welcome,
     ShoppingCart
   },
   created() {
@@ -58,7 +56,6 @@ export default {
       this.loading = false;
     },
     addToCart(product) {
-      console.log("add to cart", this.cart.items);
       if (this.cart.items.filter(i => i.id === product.id).length === 0) {
         this.cart.items.push({ ...product, quantity: 1 });
       } else {
