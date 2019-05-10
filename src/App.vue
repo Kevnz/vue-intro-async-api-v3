@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="container">
     <router-view/>
+    <github-corner/>
   </div>
 </template>
 
