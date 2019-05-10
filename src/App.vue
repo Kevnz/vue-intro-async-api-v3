@@ -72,4 +72,18 @@ h1 {
   left: 0;
   right: 0;
 }
+.primary-btn {
+  color: #fff;
+  background: #42b983;
+  padding: 4px;
+  margin: 4px;
+  border: #42b983 solid 1px;
+  border-radius: 2px;
+  font-size: 0.9rem;
+}
+
+.primary-btn:hover {
+  color: #fff;
+  background: #215c41;
+}
 </style>
