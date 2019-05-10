@@ -78,7 +78,6 @@ export default {
     Modal
   },
   data() {
-    console.log("win cart", window.cart);
     return {
       processing: false,
       showModal: false,
@@ -89,7 +88,6 @@ export default {
   methods: {
     async checkOut() {
       this.processing = true;
-      console.info(this.cart);
 
       const response = await fetch(
         "https://kev-pi.herokuapp.com/api/long/wait",
@@ -107,8 +105,6 @@ export default {
         }
       );
       const { result, ...returnResult } = await response.json();
-
-      console.info("returnResult", returnResult);
       this.processing = false;
       this.showModal = !result;
     },
