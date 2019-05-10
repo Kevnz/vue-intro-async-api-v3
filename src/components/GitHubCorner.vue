@@ -1,6 +1,6 @@
 <template>
   <a
-    href="https://github.com/Kevnz/vue-intro-api"
+    href="https://github.com/Kevnz/vue-intro-async-api-v3"
     class="github-corner"
     aria-label="Open GitHub project"
   >

@@ -11,6 +11,7 @@
         <router-link to="/about">About</router-link>
       </div>
       <div>This is an example application used to demonstrate using Vue.js</div>
+      <div>This is the third iteration that adds calling async api's as you would in a real world application</div>
     </div>
   </div>
 </template>
