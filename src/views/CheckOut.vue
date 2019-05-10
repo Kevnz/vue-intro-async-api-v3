@@ -12,7 +12,7 @@
       </div>
       <CartList v-bind:cart="cart" v-on:remove-from-cart="removeFromCart"></CartList>
 
-      <button id="show-modal" @click="showModal = true">Pay the man!!!</button>
+      <button class="primary-btn" id="show-modal" @click="showModal = true">Pay the man!!!</button>
       <!-- use the modal component, pass in the prop -->
       <modal v-if="showModal" @close="showModal = false">
         <h3 slot="header">Vue Shop</h3>
@@ -45,7 +45,13 @@
               <input type="text" class="checkout-input checkout-cvc" placeholder="CVC" required>
             </p>
             <p>
-              <input type="submit" value="Purchase" class="checkout-btn" @click="checkOut">
+              <button
+                type="button"
+                class="primary-btn"
+                @click="checkOut"
+                :disabled="processing"
+              >Purchase</button>
+              <button class="checkout-btn-cancel" type="button" @click="showModal = false">Cancel</button>
             </p>
           </form>
         </div>
@@ -74,6 +80,7 @@ export default {
   data() {
     console.log("win cart", window.cart);
     return {
+      processing: false,
       showModal: false,
       products: window.cart || [],
       cart: window.cart || []
@@ -81,24 +88,29 @@ export default {
   },
   methods: {
     async checkOut() {
+      this.processing = true;
       console.info(this.cart);
 
-      const result = await fetch("https://kev-pi.herokuapp.com/api/long/wait", {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        redirect: "follow",
-        referrer: "no-referrer",
-        body: JSON.stringify(this.cart)
-      });
+      const response = await fetch(
+        "https://kev-pi.herokuapp.com/api/long/wait",
+        {
+          method: "POST",
+          mode: "cors",
+          cache: "no-cache",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          redirect: "follow",
+          referrer: "no-referrer",
+          body: JSON.stringify(this.cart)
+        }
+      );
+      const { result, ...returnResult } = await response.json();
 
-      console.log(result);
-      return;
-      this.showModal = false;
+      console.info("returnResult", returnResult);
+      this.processing = false;
+      this.showModal = !result;
     },
     removeFromCart(product) {
       const items = this.cart.items.filter(i => i.id !== product.id);
@@ -129,14 +141,29 @@ export default {
 .checkout {
   text-align: left;
 }
+
 .checkout-name,
 .checkout-card {
   width: 180px;
   margin-right: 10px;
 }
+
 .checkout-exp,
 .checkout-cvc {
   width: 35px;
   margin-right: 5px;
+}
+
+.checkout-btn-cancel {
+  color: #fff;
+  background: #34495e;
+  padding: 4px 14px;
+  margin: 4px;
+  border: #34495e solid 1px;
+  border-radius: 2px;
+  font-size: 0.9rem;
+}
+.checkout-btn-cancel:hover {
+  background: #85919e;
 }
 </style>
