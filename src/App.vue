@@ -76,8 +76,8 @@ h1 {
 .primary-btn {
   color: #fff;
   background: #42b983;
-  padding: 4px;
-  margin: 4px;
+  padding: 5px 15px;
+  margin: 4px 4px 4px 0;
   border: #42b983 solid 1px;
   border-radius: 2px;
   font-size: 0.9rem;

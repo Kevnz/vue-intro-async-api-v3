@@ -12,7 +12,7 @@
       </div>
       <CartList v-bind:cart="cart" v-on:remove-from-cart="removeFromCart"></CartList>
 
-      <button class="primary-btn" id="show-modal" @click="showModal = true">Pay the man!!!</button>
+      <button class="primary-btn" id="show-modal" @click="showModal = true">Continue</button>
       <!-- use the modal component, pass in the prop -->
       <modal v-if="showModal" @close="showModal = false">
         <h3 slot="header">Vue Shop</h3>
@@ -157,8 +157,8 @@ export default {
 .checkout-btn-cancel {
   color: #fff;
   background: #34495e;
-  padding: 4px 14px;
-  margin: 4px;
+  padding: 5px 15px;
+  margin: 4px 4px 4px 0;
   border: #34495e solid 1px;
   border-radius: 2px;
   font-size: 0.9rem;
